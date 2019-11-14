@@ -1,0 +1,42 @@
+<div class="image">
+<form (submit)="addUser()"
+#userForm="ngForm"
+
+>
+<div >
+  <label class="label">Name</label><br>
+  <input type = "text" class="input"
+  required
+  #name="ngModel"
+  [(ngModel)]="userName"
+   name="userName"
+   [class.invalid]="name.invalid && name.touched"> </div> <br>
+   <div *ngIf="name.invalid && name.touched" style="color:red;">This is required</div>
+  <label class="label">Age</label> <br>
+  <input type="number" class="input" 
+  required
+  [class.invalid]="age.invalid && age.touched"
+  #age="ngModel"
+  name="userAge" 
+  [(ngModel)]="userAge"> <br>
+  <div *ngIf="age.invalid && age.touched" style="color:red;">This is required</div>
+  <input type="submit" value="ADD" class="save"> 
+</form>
+<br>
+
+<table>
+  <tr>
+    <th>NAME</th>
+    <th>AGE</th>
+    <th>ACTION</th>
+  </tr>
+<tr *ngFor= "let user of users">
+<td>{{user.name}}</td>
+
+<td>{{user.age}}</td>
+<td>
+  <button (click)="updateUser(user._id)" class="btn">Update</button>
+  <button (click)="deleteUser(user._id)" class="btn">Delete</button>
+</td>  
+</tr>
+</table>
